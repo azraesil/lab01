@@ -1,20 +1,23 @@
 package tr.edu.mu.se3006;
-import tr.edu.mu.se3006.presentation.OrderController;
+
 import tr.edu.mu.se3006.business.OrderService;
 import tr.edu.mu.se3006.persistence.ProductRepository;
+import tr.edu.mu.se3006.presentation.OrderController;
 
 public class Main {
+    
     public static void main(String[] args) {
-        System.out.println("🚀 System Starting...\n");
+        System.out.println("System Starting.\n");
         
-        // TODO 1: Create the lowest layer (ProductRepository)
+        ProductRepository productRepository = new ProductRepository();
+        OrderService orderService = new OrderService(productRepository);
+        OrderController orderController = new OrderController(orderService);
         
-        // TODO 2: Create the middle layer (OrderService) and inject the repository
+        System.out.println(" Test Scenarios ");
         
-        // TODO 3: Create the top layer (OrderController) and inject the service
-        
-        System.out.println("--- Test Scenarios ---");
-        // TODO 4: Call handleUserRequest via the controller to test the system
-        // e.g., controller.handleUserRequest(1L, 2);
+        orderController.handleUserRequest(1L, 2);
+        orderController.handleUserRequest(2L, 25);
+        orderController.handleUserRequest(99L, 1);
     }
 }
+
